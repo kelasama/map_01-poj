@@ -172,6 +172,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="pkg\HtmlPage1.html" />
+    <Content Include="pkg\加载控件02.html" />
+    <Content Include="pkg\添加标注.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

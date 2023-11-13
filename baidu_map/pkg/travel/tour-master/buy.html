@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?type=webgl&v=1.0&ak=iHt4Scc5Is0HGwSV1XGcw97Ma0yNsSvp"></script>
+
+    <style>
+        html, body, #container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        //加载控件
+        //1.创建地图实例
+        var map = new BMapGL.Map("container");
+        //2.设置中心经纬度  这里我们使用BMapGL命名空间下的Point类来创建一个坐标点。Point类描述了一个地理坐标点，其中111.985405表示经度，25.350672表示纬度。（为湖南省永州市九嶷山景区坐标）
+        var point = new BMapGL.Point(111.59842608526, 26.467705510832);
+        //3.在创建地图实例后，我们需要对其进行初始化，BMapGL.Map.centerAndZoom()方法要求设置中心点坐标和地图级别。 地图必须经过初始化才可以执行其他操作 值一般是3-19
+        map.centerAndZoom(point, 15);//初始化地图
+        map.enableScrollWheelZoom(true); //开启鼠标滚轮 地图可以进行放大 缩小
+        map.addControl(new BMapGL.ScaleControl()); // 添加比例尺控件 左下角显示
+        map.addControl(new BMapGL.ZoomControl());// 添加缩放控件 右下角显示
+        map.addControl(new BMapGL.CityListControl());  // 添加城市列表控件 左上角
+        map.addControl(new BMapGL.MapTypeControl());// 地图类型 右上角显示
+        map.enableScrollWheelZoom(true); //开启鼠标滚轮 地图可以进行放大 缩小
+
+        //添加标注
+        //设置地图中心
+        var centerPoint = new BMapGL.Point(111.59842608526, 26.467705510832);
+        //地图添加大号 文本标注
+        var content = '旅途的起点';
+        var label = new BMapGL.Label(content, {       // 创建文本标注
+            position: point,
+            offset: new BMapGL.Size(5, 10)
+        })
+        map.addOverlay(label);                        // 将标注添加到地图中
+        label.setStyle({                              // 设置label的样式
+            color: '#000',
+            fontSize: '12px',
+            border: '2px solid #ffcccc'
+        })
+        //监听标注事件
+        label.addEventListener("click", function () {
+            alert("您的位置在这");
+        });
+
+
+
+        //03添加标注点
+        //Marker是一个用来往地图上添加点标记的类。使用它将任何你希望用户看到的兴趣点标注在地图上。
+        //API提供了默认图标样式，您也可以通过Icon类来指定自定义图标。Marker的构造函数的参数为Point和MarkerOptions（可选）。
+        //注意：当您使用自定义图标时，标注的地理坐标点将位于标注所用图标的中心位置，您可通过Icon的offset属性修改标定位置。
+        var point1 = new BMapGL.Point(113.130890, 29.367666);  // 创建经纬度坐标点
+        var content1 = '湖南岳阳楼景区';  // 给定位置的名称
+
+        var marker1 = new BMapGL.Marker(point1);  // 创建标记点
+        map.addOverlay(marker1);  // 将标记点添加到地图中
+
+        var label1 = new BMapGL.Label(content1, {  // 创建标签
+            position: point1,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label1);  // 将标签添加到地图中
+        label1.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+        // 第二个经纬度点
+        var point2 = new BMapGL.Point(112.543205, 27.967599);  // 创建经纬度坐标点
+        var content2 = '湖南湘潭韶山风景区';  // 给定位置的名称
+
+        var marker2 = new BMapGL.Marker(point2);  // 创建标记点
+        map.addOverlay(marker2);  // 将标记点添加到地图中
+
+        var label2 = new BMapGL.Label(content2, {  // 创建标签
+            position: point2,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label2);  // 将标签添加到地图中
+        label2.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+        // 第三个经纬度点
+        var point3 = new BMapGL.Point(113.036276, 25.786204);  // 创建经纬度坐标点
+        var content3 = '湖南郴州万华岩';  // 给定位置的名称
+
+        var marker3 = new BMapGL.Marker(point3);  // 创建标记点
+        map.addOverlay(marker3);  // 将标记点添加到地图中
+
+        var label3 = new BMapGL.Label(content3, {  // 创建标签
+            position: point3,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label3);  // 将标签添加到地图中
+        label3.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+        // 第四个经纬度点
+        var point4 = new BMapGL.Point(111.266631, 25.162455);  // 创建经纬度坐标点
+        var content4 = '湖南江永勾蓝瑶寨';  // 给定位置的名称
+
+        var marker4 = new BMapGL.Marker(point4);  // 创建标记点
+        map.addOverlay(marker4);  // 将标记点添加到地图中
+
+        var label4 = new BMapGL.Label(content4, {  // 创建标签
+            position: point4,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label4);  // 将标签添加到地图中
+        label4.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+        // 第五个经纬度点
+        var point5 = new BMapGL.Point(111.985405,25.350672);  // 创建经纬度坐标点
+        var content5 = '湖南永州九嶷山 ';  // 给定位置的名称
+
+        var marker5 = new BMapGL.Marker(point5);  // 创建标记点
+        map.addOverlay(marker5);  // 将标记点添加到地图中
+
+        var label4 = new BMapGL.Label(content5, {  // 创建标签
+            position: point5,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label4);  // 将标签添加到地图中
+        label4.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+
+
+        // 第六个经纬度点
+        var point6 = new BMapGL.Point(112.960521,28.168526);  // 创建经纬度坐标点
+        var content5 = '橘子洲头 ';  // 给定位置的名称
+
+        var marker6 = new BMapGL.Marker(point6);  // 创建标记点
+        map.addOverlay(marker6);  // 将标记点添加到地图中
+
+        var label4 = new BMapGL.Label(content5, {  // 创建标签
+            position: point6,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label4);  // 将标签添加到地图中
+        label4.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+        // 第七个经纬度点
+        var point7 = new BMapGL.Point(110.550434,29.34573);  // 创建经纬度坐标点
+        var content7 = '张家界武陵源 ';  // 给定位置的名称
+
+        var marker7 = new BMapGL.Marker(point7);  // 创建标记点
+        map.addOverlay(marker7);  // 将标记点添加到地图中
+
+        var label4 = new BMapGL.Label(content7, {  // 创建标签
+            position: point7,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label4);  // 将标签添加到地图中
+        label4.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+        // 第八个经纬度点
+        var point8 = new BMapGL.Point(109.59941,27.950779);  // 创建经纬度坐标点
+        var content8 = '凤凰古城 ';  // 给定位置的名称
+
+        var marker8 = new BMapGL.Marker(point8);  // 创建标记点
+        map.addOverlay(marker8);  // 将标记点添加到地图中
+
+        var label4 = new BMapGL.Label(content8, {  // 创建标签
+            position: point8,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label4);  // 将标签添加到地图中
+        label4.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+
+        // 第九个经纬度点
+        var point9 = new BMapGL.Point(113.093207, 28.206821);  // 创建经纬度坐标点
+        var content9 = '芙蓉古镇';  // 给定位置的名称
+
+        var marker9 = new BMapGL.Marker(point9);  // 创建标记点
+        map.addOverlay(marker9);  // 将标记点添加到地图中
+
+        var label4 = new BMapGL.Label(content9, {  // 创建标签
+            position: point9,
+            offset: new BMapGL.Size(10, 20)
+        });
+        map.addOverlay(label4);  // 将标签添加到地图中
+        label4.setStyle({  // 设置标签样式
+            color: '#000',
+            fontSize: '10px',
+            border: '2px solid #ffcccc'
+        });
+
+    </script>
+
+
+</body>
+</html>

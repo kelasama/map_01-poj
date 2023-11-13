@@ -25,7 +25,7 @@
         //2.设置中心经纬度  这里我们使用BMapGL命名空间下的Point类来创建一个坐标点。Point类描述了一个地理坐标点，其中111.985405表示经度，25.350672表示纬度。（为湖南省永州市九嶷山景区坐标）
         var point = new BMapGL.Point(111.59842608526, 26.467705510832);
         //3.在创建地图实例后，我们需要对其进行初始化，BMapGL.Map.centerAndZoom()方法要求设置中心点坐标和地图级别。 地图必须经过初始化才可以执行其他操作 值一般是3-19
-        map.centerAndZoom(point, 19);//初始化地图
+        map.centerAndZoom(point, 3);//初始化地图
         map.enableScrollWheelZoom(true); //开启鼠标滚轮 地图可以进行放大 缩小
         map.addControl(new BMapGL.ScaleControl()); // 添加比例尺控件 左下角显示
         map.addControl(new BMapGL.ZoomControl());// 添加缩放控件 右下角显示
@@ -35,7 +35,7 @@
 
         //添加标注
         //地图添加大号 文本标注
-        var content = 'hello world';
+        var content = '旅途的起点';
         var label = new BMapGL.Label(content, {       // 创建文本标注
             position: point,
             offset: new BMapGL.Size(10, 20)
@@ -43,9 +43,25 @@
         map.addOverlay(label);                        // 将标注添加到地图中
         label.setStyle({                              // 设置label的样式
             color: '#000',
-            fontSize: '50px',
-            border: '2px solid blue'
+            fontSize: '25px',
+            border: '2px solid #ffcccc'
         })
+        //监听标注事件
+        label.addEventListener("click", function () {
+            alert("您的位置在这");
+        });
+
+        //03添加标注点
+        //Marker是一个用来往地图上添加点标记的类。使用它将任何你希望用户看到的兴趣点标注在地图上。
+        //API提供了默认图标样式，您也可以通过Icon类来指定自定义图标。Marker的构造函数的参数为Point和MarkerOptions（可选）。
+        //注意：当您使用自定义图标时，标注的地理坐标点将位于标注所用图标的中心位置，您可通过Icon的offset属性修改标定位置。
+
+        var point = new BMapGL.Point(113.130890, 29.367666);
+        var marker = new BMapGL.Marker(point);        // 创建标注
+        map.addOverlay(marker);                     // 将标注添加到地图中
+
+
+
 
     </script>
 
